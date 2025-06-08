@@ -27,7 +27,7 @@ function get_easter(today: Date): Date {
 }
 
 // Instead of the below, calculate using this method: https://www.assa.org.au/edm#Calculator
-const easter_dates = Record<number, Date> = {
+const easter_dates:  Record<number, Date> = {
     2001: new Date(2001, 3, 15),
     2002: new Date(2002, 2, 31),
     2003: new Date(2003, 3, 20),
@@ -71,14 +71,14 @@ const easter_dates = Record<number, Date> = {
     2041: new Date(2041, 3, 21),
 }
 
-function christmas_eve_day(easter)
+function christmas_eve_day(easter: Date): Date
 {
     // 24th December
     const year = easter.getFullYear() - 1;
     return new Date(year, 11, 24);
 };
 
-function christmas_day(easter)
+function christmas_day(easter: Date): Date
 {
     // 25th December
     const year = easter.getFullYear() - 1;
@@ -86,7 +86,7 @@ function christmas_day(easter)
 }
 
 
-function boxing_day(easter)
+function boxing_day(easter: Date): Date
 {
     // 26th December
     const year = easter.getFullYear() - 1;
@@ -94,13 +94,13 @@ function boxing_day(easter)
 };
 
 
-function epiphany_day(easter)
+function epiphany_day(easter: Date): Date
 {
     // 6th of January
     return new Date(easter.getFullYear(), 0, 6)
 };
 
-function baptism_of_the_lord_day(easter)
+function baptism_of_the_lord_day(easter: Date): Date
 {
     // First Sunday after Epiphany
     const epiphany = epiphany_day(easter);
@@ -108,7 +108,7 @@ function baptism_of_the_lord_day(easter)
     return new Date(epiphany.getTime() + days_to_sunday);
 };
 
-function transfiguration_day(easter)
+function transfiguration_day(easter: Date): Date
 {
     // Sunday before Ash Wednesday
     const ash_wednesday = ash_wednesday_day(easter);
@@ -116,74 +116,74 @@ function transfiguration_day(easter)
     return new Date(ash_wednesday.getTime() - days_back_to_sunday);
 };
 
-function shrove_tuesday_day(easter)
+function shrove_tuesday_day(easter: Date): Date
 {
     // Day before Ash Wednesday
     const ash_wednesday = ash_wednesday_day(easter);
     return new Date(ash_wednesday.getTime() - DAY_MS);
 };
 
-function ash_wednesday_day(easter)
+function ash_wednesday_day(easter: Date): Date
 {
     // 46 days before Easter
     const days_to_easter = 46 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
-function palm_sunday_day(easter)
+function palm_sunday_day(easter: Date): Date
 {
     // Sunday before Easter
     const days_to_easter = 7 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
-function spy_wednesday_day(easter)
+function spy_wednesday_day(easter: Date): Date
 {
     // Wednesday before Easter
     const days_to_easter = 4 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
-function maundy_thursday_day(easter)
+function maundy_thursday_day(easter: Date): Date
 {
     // Thursday before Easter
     const days_to_easter = 3 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
-function good_friday_day(easter)
+function good_friday_day(easter: Date): Date
 {
     // Friday before Easter
     const days_to_easter = 2 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
-function holy_saturday_day(easter)
+function holy_saturday_day(easter: Date): Date
 {
     // Day before Easter
     return new Date(easter.getTime() - DAY_MS);
 };
 
-function easter_day(easter)
+function easter_day(easter: Date): Date
 {
     return easter;
 };
 
-function ascension_day(easter)
+function ascension_day(easter: Date): Date
 {
     // 40th day of Easter, Erster Sunday being the first day
     const days_from_easter = 39 * DAY_MS;
     return new Date(easter.getTime() + days_from_easter);
 };
 
-function pentecost_day(easter)
+function pentecost_day(easter: Date): Date
 {
     // 50th day of Easter, Easter Sunday being the first day
     const days_from_easter = 49 * DAY_MS;
     return new Date(easter.getTime() + days_from_easter);
 };
 
-function holy_trinity_day(easter)
+function holy_trinity_day(easter: Date): Date
 {
     // Sunday after Pentecost
     const pentecost = pentecost_day(easter);
@@ -191,31 +191,31 @@ function holy_trinity_day(easter)
     return new Date(pentecost.getTime() + days_from_pentecost);
 };
 
-function all_hallows_eve_day(easter)
+function all_hallows_eve_day(easter: Date): Date
 {
     // 31st October
     return new Date(easter.getFullYear(), 9, 31);
 };
 
-function reformation_day(easter)
+function reformation_day(easter: Date): Date
 {
     // 31st October
     return new Date(easter.getFullYear(), 9, 31);
 };
 
-function all_saints_day(easter)
+function all_saints_day(easter: Date): Date
 {
     // 1st November
     return new Date(easter.getFullYear(), 10, 1);
 };
 
-function all_souls_day(easter)
+function all_souls_day(easter: Date): Date
 {
     // 2nd November
     return new Date(easter.getFullYear(), 10, 2);
 };
 
-function christ_the_king_day(easter)
+function christ_the_king_day(easter: Date): Date
 {
     // Sunday before Advent; last Sunday of the year
     const next_year = new Date(easter.getFullYear() + 1, 0, 1);
@@ -224,7 +224,13 @@ function christ_the_king_day(easter)
     return new Date(next_advent["start"].getTime() - days_to_advent);
 };
 
-const day_tests = [
+type Day = {
+   test: (easter: Date) => Date;
+   day: string;
+   colours: Record<string, string[]> | null;
+}
+
+const day_tests: Day[] = [
   {
     "test": epiphany_day,
     "day": "Epiphany",
@@ -406,7 +412,8 @@ const day_tests = [
   },
   {
     "test": spy_wednesday_day,
-    "day": "Spy Wednesday"
+    "day": "Spy Wednesday",
+    "colours": null, 
   },
   {
     "test": maundy_thursday_day,
@@ -832,7 +839,7 @@ const day_tests = [
   }
 ]
 
-const reformation_day_details = {
+const reformation_day_details: Day = {
     "test": reformation_day,
     "day": "Reformation Day",
     "colours": {
@@ -859,7 +866,9 @@ const reformation_day_details = {
     }
   };
 
-export function get_day(today: Date, lutheran: bool): string{
+
+export function get_day(today: Date, lutheran: Boolean): (Day | null)
+{
     const easter = get_easter(today);
     const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     //console.log("get_day.midnight: " + midnight);
@@ -880,10 +889,11 @@ export function get_day(today: Date, lutheran: bool): string{
             return day_test;
         }
     }
+    return null;
 };
 
 
-function advent_season(easter)
+function advent_season(easter: Date): Record<string, Date>
 {
     // The 4th Sunday before Christmas until Christmas Eve.
     const four_sundays = 7 * 4 * DAY_MS;
@@ -899,55 +909,56 @@ function advent_season(easter)
     };
 };
 
-function christmas_season(easter)
+function christmas_season(easter: Date): Record<string, Date>
 {
     return {
-        "start": christmas_day(easter),
+        "start": christmas_day(easter: Date),
         "end": new Date(easter.getFullYear(), 0, 5)
     };
 }
 
-function epiphany_season(easter){
+function epiphany_season(easter: Date): Date
+{
     // 6th of January to the day before Ash Wednesday
     return {
-        "start": epiphany_day(easter),
-        "end": new Date(ash_wednesday_day(easter).getTime() - DAY_MS)
+        "start": epiphany_day(easter: Date),
+        "end": new Date(ash_wednesday_day(easter: Date).getTime() - DAY_MS)
     };
 }
 
-function lent_season(easter)
+function lent_season(easter: Date): Record<string, Date>
 {
     // 6 weeks before Easter. Starts on Ash Wednesday i.e. 4 days before sunday.
     // Includes the week before Easter, but we will report that as Holy Week instead.
     return {
-        "start": ash_wednesday_day(easter),
-        "end": new Date(palm_sunday_day(easter).getTime() - DAY_MS)
+        "start": ash_wednesday_day(easter: Date),
+        "end": new Date(palm_sunday_day(easter: Date).getTime() - DAY_MS)
     };
 }
-function holy_week_season(easter)
+function holy_week_season(easter: Date): Record<string, Date>
 {
     // The week before Easter.
     return {
-        "start": palm_sunday_day(easter),
-        "end": holy_saturday_day(easter),
+        "start": palm_sunday_day(easter: Date),
+        "end": holy_saturday_day(easter: Date),
     };
 }
 
-function easter_season(easter)
+function easter_season(easter: Date): Record<string, Date>
 {
     // From Easter until Pentecost.
     return {
-        "start": easter_day(easter),
-        "end": new Date(pentecost_day(easter).getTime() - DAY_MS)
+        "start": easter_day(easter: Date),
+        "end": new Date(pentecost_day(easter: Date).getTime() - DAY_MS)
     };
 }
 
-function ordinary_time_season(easter)
+function ordinary_time_season(easter: Date): Record<string, Date>
 {
     // Pentecost until the Saturday after Christ the King.
     return {
-        "start": pentecost_day(easter),
-        "end": new Date(christ_the_king_day(easter).getTime() + (6 * DAY_MS)),
+        "start": pentecost_day(easter: Date),
+        "end": new Date(christ_the_king_day(easter: Date).getTime() + (6 * DAY_MS)),
     };
 }
 
@@ -963,7 +974,13 @@ export const denominations: string[] = [
       "Lutheran Missouri",
       "Anglican Canada",
 ];
-const season_tests = [
+
+type Season = {
+   test: (easter: Date) => Date;
+   season: string;
+   colours: Record<string, string[]>;
+}
+const season_tests: Season[] = [
   {
     "test": advent_season,
     "season": "Advent",
