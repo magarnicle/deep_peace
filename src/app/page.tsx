@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {get_season, get_day} from "./liturgical_dates";
 
 
@@ -17,8 +16,8 @@ function Day({season, day}) {
 }
 
 export default function MyApp() {
-  let season = get_season(new Date());
-  let day = get_day(new Date());
+  const season = get_season(new Date());
+  const day = get_day(new Date());
   console.log(season);
   return (
       <Day season={season} day={day}/>

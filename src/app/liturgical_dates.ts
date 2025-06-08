@@ -1,5 +1,5 @@
-let HOUR_MS = 60 * 60 * 1000;
-let DAY_MS = 24 * HOUR_MS;
+const HOUR_MS = 60 * 60 * 1000;
+const DAY_MS = 24 * HOUR_MS;
 
 // JAVASCRIPT MONTHS START AT 0!!!!!!!!!!!!
 
@@ -8,11 +8,11 @@ let DAY_MS = 24 * HOUR_MS;
 // Christ the King. Easter is dependant on the moon, which we cannot calculate
 // easily here, so store 10 years of Easter dates.
 
-function get_easter(today){
+function get_easter(today: Date): Date {
     // For the given day, figure out when Easter is
-    let midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     // Easter doesn't have to be exact for this calculation, so make one up
-    let end_of_year = new Date(christ_the_king_day(new Date(today.getFullYear(), 2, 1)).getTime() + (6 * DAY_MS));
+    const end_of_year = new Date(christ_the_king_day(new Date(today.getFullYear(), 2, 1)).getTime() + (6 * DAY_MS));
     //console.log("get_easter.midnight: " + midnight);
     //console.log("get_easter.end_of_year " + end_of_year);
     if (midnight <= end_of_year){
@@ -27,7 +27,7 @@ function get_easter(today){
 }
 
 // Instead of the below, calculate using this method: https://www.assa.org.au/edm#Calculator
-const easter_dates = {
+const easter_dates = Record<number, Date> = {
     2001: new Date(2001, 3, 15),
     2002: new Date(2002, 2, 31),
     2003: new Date(2003, 3, 20),
@@ -74,14 +74,14 @@ const easter_dates = {
 function christmas_eve_day(easter)
 {
     // 24th December
-    let year = easter.getFullYear() - 1;
+    const year = easter.getFullYear() - 1;
     return new Date(year, 11, 24);
 };
 
 function christmas_day(easter)
 {
     // 25th December
-    let year = easter.getFullYear() - 1;
+    const year = easter.getFullYear() - 1;
     return new Date(year, 11, 25);
 }
 
@@ -89,7 +89,7 @@ function christmas_day(easter)
 function boxing_day(easter)
 {
     // 26th December
-    let year = easter.getFullYear() - 1;
+    const year = easter.getFullYear() - 1;
     return new Date(year, 11, 26);
 };
 
@@ -103,58 +103,58 @@ function epiphany_day(easter)
 function baptism_of_the_lord_day(easter)
 {
     // First Sunday after Epiphany
-    let epiphany = epiphany_day(easter);
-    let days_to_sunday = (7 - epiphany.getDay()) * DAY_MS;
+    const epiphany = epiphany_day(easter);
+    const days_to_sunday = (7 - epiphany.getDay()) * DAY_MS;
     return new Date(epiphany.getTime() + days_to_sunday);
 };
 
 function transfiguration_day(easter)
 {
     // Sunday before Ash Wednesday
-    let ash_wednesday = ash_wednesday_day(easter);
-    let days_back_to_sunday = 3 * DAY_MS;
+    const ash_wednesday = ash_wednesday_day(easter);
+    const days_back_to_sunday = 3 * DAY_MS;
     return new Date(ash_wednesday.getTime() - days_back_to_sunday);
 };
 
 function shrove_tuesday_day(easter)
 {
     // Day before Ash Wednesday
-    let ash_wednesday = ash_wednesday_day(easter);
+    const ash_wednesday = ash_wednesday_day(easter);
     return new Date(ash_wednesday.getTime() - DAY_MS);
 };
 
 function ash_wednesday_day(easter)
 {
     // 46 days before Easter
-    let days_to_easter = 46 * DAY_MS;
+    const days_to_easter = 46 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
 function palm_sunday_day(easter)
 {
     // Sunday before Easter
-    let days_to_easter = 7 * DAY_MS;
+    const days_to_easter = 7 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
 function spy_wednesday_day(easter)
 {
     // Wednesday before Easter
-    let days_to_easter = 4 * DAY_MS;
+    const days_to_easter = 4 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
 function maundy_thursday_day(easter)
 {
     // Thursday before Easter
-    let days_to_easter = 3 * DAY_MS;
+    const days_to_easter = 3 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
 function good_friday_day(easter)
 {
     // Friday before Easter
-    let days_to_easter = 2 * DAY_MS;
+    const days_to_easter = 2 * DAY_MS;
     return new Date(easter.getTime() - days_to_easter);
 };
 
@@ -172,22 +172,22 @@ function easter_day(easter)
 function ascension_day(easter)
 {
     // 40th day of Easter, Erster Sunday being the first day
-    let days_from_easter = 39 * DAY_MS;
+    const days_from_easter = 39 * DAY_MS;
     return new Date(easter.getTime() + days_from_easter);
 };
 
 function pentecost_day(easter)
 {
     // 50th day of Easter, Easter Sunday being the first day
-    let days_from_easter = 49 * DAY_MS;
+    const days_from_easter = 49 * DAY_MS;
     return new Date(easter.getTime() + days_from_easter);
 };
 
 function holy_trinity_day(easter)
 {
     // Sunday after Pentecost
-    let pentecost = pentecost_day(easter);
-    let days_from_pentecost = 7 * DAY_MS;
+    const pentecost = pentecost_day(easter);
+    const days_from_pentecost = 7 * DAY_MS;
     return new Date(pentecost.getTime() + days_from_pentecost);
 };
 
@@ -218,9 +218,9 @@ function all_souls_day(easter)
 function christ_the_king_day(easter)
 {
     // Sunday before Advent; last Sunday of the year
-    let next_year = new Date(easter.getFullYear() + 1, 0, 1);
-    let next_advent = advent_season(next_year);
-    let days_to_advent = 7 * DAY_MS;
+    const next_year = new Date(easter.getFullYear() + 1, 0, 1);
+    const next_advent = advent_season(next_year);
+    const days_to_advent = 7 * DAY_MS;
     return new Date(next_advent["start"].getTime() - days_to_advent);
 };
 
@@ -860,20 +860,20 @@ const reformation_day_details = {
   };
 
 export function get_day(today: Date, lutheran: bool): string{
-    let easter = get_easter(today);
-    let midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const easter = get_easter(today);
+    const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     //console.log("get_day.midnight: " + midnight);
     // Reformation day clashes with Halloween
     if (lutheran) {
         //console.log("Checking reformation day");
-        let reformation_result = reformation_day_details["test"](easter)
+        const reformation_result = reformation_day_details["test"](easter)
         if (midnight.valueOf() == reformation_result.valueOf()){
             return reformation_day_details;
         }
     }
     let day_test;
     for (day_test of day_tests) {
-        let test_result = day_test["test"](easter);
+        const test_result = day_test["test"](easter);
         //console.log("get_day.day_test['day']: " + day_test["day"]);
         //console.log("get_day.test_result: " + test_result);
         if (midnight.valueOf() == test_result.valueOf()) {
@@ -886,8 +886,8 @@ export function get_day(today: Date, lutheran: bool): string{
 function advent_season(easter)
 {
     // The 4th Sunday before Christmas until Christmas Eve.
-    let four_sundays = 7 * 4 * DAY_MS;
-    let christmas = christmas_day(easter);
+    const four_sundays = 7 * 4 * DAY_MS;
+    const christmas = christmas_day(easter);
     let days_to_sunday = (7 - christmas.getDay());
     // If Christmas is a Sunday, we want 4 Sundays BEFORE that one
     if (days_to_sunday == 7){
@@ -1235,12 +1235,12 @@ const season_tests = [
 ];
 
 export function get_season(today: Date): string{
-    let easter = get_easter(today);
-    let midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const easter = get_easter(today);
+    const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     //console.log("get_season.midnight: " + midnight);
     let season_test;
     for (season_test of season_tests) {
-        let test_result = season_test["test"](easter);
+        const test_result = season_test["test"](easter);
         //console.log("season_test['season']" + season_test["season"]);
         //console.log("get_season.test_result['start']: " + test_result["start"]);
         //console.log("get_season.test_result['end']: " + test_result["end"]);
