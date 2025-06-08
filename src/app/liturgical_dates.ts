@@ -224,7 +224,7 @@ function christ_the_king_day(easter: Date): Date
     return new Date(next_advent["start"].getTime() - days_to_advent);
 };
 
-type Day = {
+export type Day = {
    test: (easter: Date) => Date;
    day: string;
    colours: Record<string, string[]> | null;
@@ -867,7 +867,7 @@ const reformation_day_details: Day = {
   };
 
 
-export function get_day(today: Date, lutheran: Boolean): (Day | null)
+export function get_day(today: Date, lutheran: boolean): (Day | null)
 {
     const easter = get_easter(today);
     const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -912,17 +912,17 @@ function advent_season(easter: Date): Record<string, Date>
 function christmas_season(easter: Date): Record<string, Date>
 {
     return {
-        "start": christmas_day(easter: Date),
+        "start": christmas_day(easter),
         "end": new Date(easter.getFullYear(), 0, 5)
     };
 }
 
-function epiphany_season(easter: Date): Date
+function epiphany_season(easter: Date): Record<string, Date>
 {
     // 6th of January to the day before Ash Wednesday
     return {
-        "start": epiphany_day(easter: Date),
-        "end": new Date(ash_wednesday_day(easter: Date).getTime() - DAY_MS)
+        "start": epiphany_day(easter),
+        "end": new Date(ash_wednesday_day(easter).getTime() - DAY_MS)
     };
 }
 
@@ -931,16 +931,16 @@ function lent_season(easter: Date): Record<string, Date>
     // 6 weeks before Easter. Starts on Ash Wednesday i.e. 4 days before sunday.
     // Includes the week before Easter, but we will report that as Holy Week instead.
     return {
-        "start": ash_wednesday_day(easter: Date),
-        "end": new Date(palm_sunday_day(easter: Date).getTime() - DAY_MS)
+        "start": ash_wednesday_day(easter),
+        "end": new Date(palm_sunday_day(easter).getTime() - DAY_MS)
     };
 }
 function holy_week_season(easter: Date): Record<string, Date>
 {
     // The week before Easter.
     return {
-        "start": palm_sunday_day(easter: Date),
-        "end": holy_saturday_day(easter: Date),
+        "start": palm_sunday_day(easter),
+        "end": holy_saturday_day(easter),
     };
 }
 
@@ -948,8 +948,8 @@ function easter_season(easter: Date): Record<string, Date>
 {
     // From Easter until Pentecost.
     return {
-        "start": easter_day(easter: Date),
-        "end": new Date(pentecost_day(easter: Date).getTime() - DAY_MS)
+        "start": easter_day(easter),
+        "end": new Date(pentecost_day(easter).getTime() - DAY_MS)
     };
 }
 
@@ -957,8 +957,8 @@ function ordinary_time_season(easter: Date): Record<string, Date>
 {
     // Pentecost until the Saturday after Christ the King.
     return {
-        "start": pentecost_day(easter: Date),
-        "end": new Date(christ_the_king_day(easter: Date).getTime() + (6 * DAY_MS)),
+        "start": pentecost_day(easter),
+        "end": new Date(christ_the_king_day(easter).getTime() + (6 * DAY_MS)),
     };
 }
 
@@ -975,8 +975,8 @@ export const denominations: string[] = [
       "Anglican Canada",
 ];
 
-type Season = {
-   test: (easter: Date) => Date;
+export type Season = {
+   test: (easter: Date) => Record<string, Date>;
    season: string;
    colours: Record<string, string[]>;
 }
@@ -1251,7 +1251,8 @@ const season_tests: Season[] = [
   }
 ];
 
-export function get_season(today: Date): string{
+export function get_season(today: Date): (Season | null)
+{
     const easter = get_easter(today);
     const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     //console.log("get_season.midnight: " + midnight);
@@ -1268,9 +1269,10 @@ export function get_season(today: Date): string{
             return season_test;
         }
     }
+    return null;
 };
 
-export const descriptions: Record<string, string> = {
+export const descriptions: Record<string, Record<string, string>> = {
     "days": {
         "All Hallows' Eve": "Halloween or Hallowe'en (a contraction of 'All Hallows' evening'), less commonly known as Allhalloween, All Hallows' Eve, or All Saints' Eve, is a celebration observed in many countries  on 31 October, the eve of the Western Christian feast of All Hallows' Day. It begins the observance of Allhallowtide, the time in the liturgical year dedicated to remembering the dead, including saints (hallows), martyrs, and all the departed. One theory holds that many Halloween traditions were influenced by Celtic harvest festivals, particularly the Gaelic festival Samhain, which are believed to have pagan roots. Some go further and suggest that Samhain may have been Christianized as All Hallow's Day, along with its eve, by the early Church. Other academics believe Halloween began solely as a Christian holiday, being the vigil of All Hallow's Day. Celebrated in Ireland and Scotland for centuries, Irish and Scottish migrants brought many Halloween customs to North America in the 19th century, and then through American influence, Halloween spread to other countries by the late 20th and early 21st century. Halloween activities include trick-or-treating (or the related guising and souling), attending Halloween costume parties, carving pumpkins into jack-o'-lanterns, lighting bonfires, apple bobbing, divination games, playing pranks, visiting haunted attractions, telling scary stories, and watching horror or Halloween-themed films. For some people, the Christian religious observances of All Hallows' Eve, including attending church services and lighting candles on the graves of the dead, remain popular, although it is a secular celebration for others. Some Christians historically abstained from meat on All Hallows' Eve, a tradition reflected in the eating of certain vegetarian foods on this vigil day, including apples, potato pancakes, and soul cakes.",
         "All Saints' Day": "All Saints' Day, also known as All Hallows' Day, the Feast of All Saints, the Feast of All Hallows, the Solemnity of All Saints, and Hallowmas, is a Christian solemnity celebrated in honour of all the saints of the church, whether they are known or unknown. From the 4th century, feasts commemorating all Christian martyrs were held in various places, on various dates near Easter and Pentecost. In the 9th century, some churches in the British Isles began holding the commemoration of all saints on 1 November, and in the 9th century this was extended to the whole Catholic church by Pope Gregory IV. In Western Christianity, it is still celebrated on 1 November by the Roman Catholic Church as well as many Protestant churches, as the Lutheran, Anglican, and Methodist traditions. The Eastern Orthodox Church and associated Eastern Catholic and Eastern Lutheran churches celebrate it on the first Sunday after Pentecost. The Church of the East and the Syro-Malabar Church and Chaldean Catholic Church, the latter of which is in communion with Rome, celebrates All Saints' Day on the first Friday after Easter Sunday. In the Coptic Orthodox tradition, All Saints' Day is on Nayrouz, celebrated on September 11. The day is both the start of the Coptic new year and its first month, Thout.",
