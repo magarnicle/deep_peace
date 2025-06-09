@@ -1,4 +1,35 @@
+'use client'
+
 import {get_season, get_day, Season, Day} from "./liturgical_dates";
+import React, { useState, useEffect } from 'react';
+
+function DateTime() {
+    // State to hold the current date and time
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    // Effect to set up a timer
+    useEffect(() => {
+        // Update the time every second
+        const timerId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        // Clear the interval when component unmounts
+        return () => clearInterval(timerId);
+    }, []);
+
+    // Format Date to readable format
+    const formatDate = (the_date: Date) => {
+        return the_date.toLocaleString(); // This will display date and time in local format
+    };
+
+    return (
+        <div>
+        <h2>Current Date and Time</h2>
+        <p>{formatDate(currentTime)}</p>
+        </div>
+    );
+}
 
 interface DayProps {
   season: Season | null;
@@ -20,7 +51,7 @@ function DayInfo({season, day}: DayProps) {
      colour = "white";
   };
   return (
-    <body style={{ backgroundColor: colour, width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}><h1>{text}</h1></body>
+    <div style={{ backgroundColor: colour, width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}><h1>{text}</h1></div>
   );
 }
 
@@ -30,6 +61,9 @@ export default function MyApp() {
   console.log(season);
   console.log(day);
   return (
+      <body>
       <DayInfo season={season} day={day}/>
+      <DateTime />
+      </body>
   );
 }
