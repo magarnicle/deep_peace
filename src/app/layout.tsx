@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Deep Peace"
+  title: "Deep Peace",
   description: "Things that make for peace.",
 };
 
