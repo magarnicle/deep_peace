@@ -24,7 +24,7 @@ function DateTime() {
     };
 
     return (
-        <div>
+        <div style={{ width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
         <h2>Current Date and Time</h2>
         <p>{formatDate(currentTime)}</p>
         </div>
@@ -51,7 +51,9 @@ function DayInfo({season, day}: DayProps) {
      colour = "white";
   };
   return (
-    <div style={{ backgroundColor: colour, width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}><h1>{text}</h1></div>
+    <div style={{ backgroundColor: colour, width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}><h1>{text}</h1>
+  <DateTime />
+    </div>
   );
 }
 
@@ -63,7 +65,9 @@ export default function MyApp() {
   return (
       <body>
       <DayInfo season={season} day={day}/>
-      <DateTime />
+      <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
+      <h1>Alpha, expect bugs and changes</h1>
+      </div>
       </body>
   );
 }
