@@ -24,10 +24,7 @@ function DateTime() {
     };
 
     return (
-        <div style={{ width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
-        <h2>Current Date and Time</h2>
         <p>{formatDate(currentTime)}</p>
-        </div>
     );
 }
 
@@ -66,7 +63,7 @@ export default function MyApp() {
       <body>
       <DayInfo season={season} day={day}/>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
-      <h1>Alpha, expect bugs and changes</h1>
+      <h1>Alpha. Expect bugs and changes</h1>
       </div>
       </body>
   );
