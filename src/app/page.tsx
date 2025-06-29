@@ -61,7 +61,7 @@ export default function MyApp() {
   console.log(season);
   console.log(day);
   return (
-      <body style={{background-color: "black"}}>
+      <body>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
       <h1>Alpha. Expect bugs and changes</h1>
       </div>
