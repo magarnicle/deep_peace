@@ -61,14 +61,14 @@ export default function MyApp() {
   console.log(season);
   console.log(day);
   return (
-      <body>
-      <h1>Alpha. Expect bugs and changes</h1>
-      <DayInfo season={season} day={day}/>
+      <body style={{background-color: "black"}}>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
-      <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg">
+      <h1>Alpha. Expect bugs and changes</h1>
+      </div>
+      <DayInfo season={season} day={day}/>
+      <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
 	<Image src="/glasshouse_mountains/image.jpg" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia"/>
       </a>
-      </div>
       </body>
   );
 }
