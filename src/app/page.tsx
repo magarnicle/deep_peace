@@ -5,13 +5,14 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
 // Add zero in front of numbers < 10
-function zeroPad(i) {
+function zeroPad(i: number) {
     if (i < 10) {
-        i = "0" + i;
+        return "0" + String(i);
     }
-    return i;
+    return String(i);
 }
-function getLocalDateString(the_date) {
+
+function getLocalDateString(the_date: Date) {
     // Months in JS count from 0, unlike years and days
     return the_date.getFullYear() + "-" + zeroPad(the_date.getMonth() + 1) + "-" + zeroPad(the_date.getDate());
 };
@@ -33,12 +34,12 @@ function DateTime() {
 
     // Format Date to readable format
     const formatDate = (the_date: Date) => {
-        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '4-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
         return the_date.toLocaleDateString(undefined, options); // This will display date and time in local format
     };
 
     return (
-        <p>{formatDate(currentTime)}</p>
+        <p>{formatDate(currentTime)} {getLocalDateString(currentTime)}</p>
     );
 }
 
