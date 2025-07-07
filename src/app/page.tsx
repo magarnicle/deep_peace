@@ -3,6 +3,18 @@
 import {get_season, get_day, Season, Day} from "./liturgical_dates";
 import React, { useState, useEffect } from 'react';
 
+// Add zero in front of numbers < 10
+function zeroPad(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+function getLocalDateString(the_date) {
+    // Months in JS count from 0, unlike years and days
+    return the_date.getFullYear() + "-" + zeroPad(the_date.getMonth() + 1) + "-" + zeroPad(the_date.getDate());
+};
+
 function DateTime() {
     // State to hold the current date and time
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -20,7 +32,8 @@ function DateTime() {
 
     // Format Date to readable format
     const formatDate = (the_date: Date) => {
-        return the_date.toLocaleString(); // This will display date and time in local format
+        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        return the_date.toLocaleDateString(undefined, options); // This will display date and time in local format
     };
 
     return (
