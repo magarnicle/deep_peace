@@ -2,6 +2,7 @@
 
 import {get_season, get_day, Season, Day} from "./liturgical_dates";
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'
 
 // Add zero in front of numbers < 10
 function zeroPad(i) {
@@ -74,10 +75,13 @@ export default function MyApp() {
   console.log(day);
   return (
       <body>
-      <DayInfo season={season} day={day}/>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
       <h1>Alpha. Expect bugs and changes</h1>
       </div>
+      <DayInfo season={season} day={day}/>
+      <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
+	<Image src="/glasshouse_mountains/image.jpg" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia"/>
+      </a>
       </body>
   );
 }
