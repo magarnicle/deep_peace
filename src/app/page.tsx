@@ -34,7 +34,7 @@ function DateTime() {
 
     // Format Date to readable format
     const formatDate = (the_date: Date) => {
-        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '4-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
         return the_date.toLocaleDateString(undefined, options); // This will display date and time in local format
     };
 
