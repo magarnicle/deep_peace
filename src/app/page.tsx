@@ -4,19 +4,6 @@ import {get_season, get_day, Season, Day} from "./liturgical_dates";
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 
-// Add zero in front of numbers < 10
-function zeroPad(i: number) {
-    if (i < 10) {
-        return "0" + String(i);
-    }
-    return String(i);
-}
-
-function getLocalDateString(the_date: Date) {
-    // Months in JS count from 0, unlike years and days
-    return the_date.getFullYear() + "-" + zeroPad(the_date.getMonth() + 1) + "-" + zeroPad(the_date.getDate());
-};
-
 function DateTime() {
     // State to hold the current date and time
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -32,14 +19,31 @@ function DateTime() {
         return () => clearInterval(timerId);
     }, []);
 
+
+
     // Format Date to readable format
     const formatDate = (the_date: Date) => {
-        const options: Intl.DateTimeFormatOptions = { weekday: 'long', year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        return the_date.toLocaleDateString(undefined, options); // This will display date and time in local format
+
+      // Extract parts of the date
+      const the_year = the_date.getFullYear();
+      const the_month = String(the_date.getMonth() + 1).padStart(2, '0');
+      const the_day = String(the_date.getDate()).padStart(2, '0');
+
+      // Format the time
+      const hours = String(the_date.getHours()).padStart(2, '0');
+      const minutes = String(the_date.getMinutes()).padStart(2, '0');
+      const seconds = String(the_date.getSeconds()).padStart(2, '0');
+
+      // Format the day of the week in the user's locale
+      const dayName = new Intl.DateTimeFormat(undefined, { weekday: 'long' }).format(the_date);
+
+      // Construct the formatted date-time string
+      return `${the_year}-${the_month}-${the_day}, ${dayName}, ${hours}:${minutes}:${seconds}`;
     };
 
+
     return (
-        <p>{formatDate(currentTime)} {getLocalDateString(currentTime)}</p>
+        <p>{formatDate(currentTime)}</p>
     );
 }
 
