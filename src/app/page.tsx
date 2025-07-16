@@ -73,20 +73,66 @@ function DayInfo({season, day}: DayProps) {
   );
 }
 
+function NasaImage() {
+
+  const apod_default = {title: "", url: "", explanation: "", media_type: null}
+  const [apod, setApod] = useState(apod_default);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+          const apiKey = 'DEMO_KEY'; // Replace with your NASA API key
+          // TODO pass the date parameter so we get today's image in our local time
+          const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+        const response = await fetch(url);
+        const result = await response.json();
+        setApod(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } 
+    }
+    fetchData();
+  }, []);
+
+  if (apod.media_type !== null){
+      return <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <h2>{apod.title}</h2>
+          <p>{apod.explanation}</p>
+          {apod.media_type === 'image' ? (
+            <Image src={apod.url} alt={apod.title} width="1000" height="500" style={{ maxWidth: "100%", height: "auto" }} />
+          ) : apod.media_type === 'video' ? (
+            <iframe
+              title="APOD video"
+              width="560"
+              height="315"
+              src={apod.url}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : null}
+        </div>
+  } else {
+      return <div style={{ textAlign: "center", marginTop: "20px" }}></div>
+  }
+}
+
 export default function MyApp() {
   const season = get_season(new Date());
   const day = get_day(new Date(), true);
   console.log(season);
   console.log(day);
+
   return (
-      <body>
+    <div>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
-      <h1>Alpha. Expect bugs and changes</h1>
+       <h1>Alpha. Expect bugs and changes</h1>
       </div>
-      <DayInfo season={season} day={day}/>
+      <DayInfo season={season} day={day} />
+      <NasaImage />
       <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
-	<Image src="/glasshouse_mountains/image.jpg" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia"/>
+        <Image src="/glasshouse_mountains/image.jpg" width="1000" height="500" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
       </a>
-      </body>
+    </div>
   );
 }
