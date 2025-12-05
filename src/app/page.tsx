@@ -117,6 +117,20 @@ function NasaImage() {
   }
 }
 
+// Jesus Quote
+// Moon phase
+// Painting/sculpture
+// Music
+// Nature video
+// Short film
+// Poem
+// Short story
+// Bible passage
+// Book extract
+// Profile of animal or plant
+// Question without answer
+// Academic articles on peace
+
 export default function MyApp() {
   const season = get_season(new Date());
   const day = get_day(new Date(), true);
