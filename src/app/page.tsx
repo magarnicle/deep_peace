@@ -47,6 +47,50 @@ function DateTime() {
     );
 }
 
+function DateProgress() {
+    // State to hold the current date and time
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    // Effect to set up a timer
+    useEffect(() => {
+        // Update the time every second
+        const timerId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+
+        // Clear the interval when component unmounts
+        return () => clearInterval(timerId);
+    }, []);
+
+
+
+    // Format Date to readable format
+    const formatDate = (the_date: Date) => {
+
+      // Extract parts of the date
+      const the_month = String(the_date.getMonth() + 1);
+      const day_of_month = String(the_date.getDate());
+      const the_day = String(the_date.getDay() + 1);
+
+      const the_year = the_date.getFullYear();
+      const day_in_year = String((new Date(the_year, the_month - 2, day_of_month) - new Date(the_year, 0, 1)) / 24 / 60 / 60 / 1000);
+      const days_in_year = String(new Date(the_year + 1, 0, 1) - new Date(the_year, 0, 1)) / 24 / 60 / 60 / 1000);
+
+      // Format the time
+      const hours = String(the_date.getHours());
+      const minutes = String(the_date.getMinutes());
+      const seconds = String(the_date.getSeconds());
+
+      // Construct the formatted date-time string
+      return `${day_in_year}/${days_in_year}`;
+    };
+
+
+    return (
+        <p>{formatDate(currentTime)}</p>
+    );
+}
+
 interface DayProps {
   season: Season | null;
   day: Day | null;
