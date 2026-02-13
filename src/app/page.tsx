@@ -73,6 +73,29 @@ function DayInfo({season, day}: DayProps) {
   );
 }
 
+function AdUnit() {
+  useEffect(() => {
+    try {
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+    } catch (e) {
+      console.error('AdSense error:', e);
+    }
+  }, []);
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-9728124941305322"
+        data-ad-slot="XXXXXXXXXX"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  );
+}
+
 function NasaImage() {
 
   const apod_default = {title: "", url: "", explanation: "", media_type: null}
@@ -143,6 +166,7 @@ export default function MyApp() {
        <h1>Alpha. Expect bugs and changes</h1>
       </div>
       <DayInfo season={season} day={day} />
+      <AdUnit />
       <NasaImage />
       <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
         <Image src="/glasshouse_mountains/image.jpg" width="1000" height="500" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
