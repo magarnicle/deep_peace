@@ -76,7 +76,8 @@ function DayInfo({season, day}: DayProps) {
 function AdUnit() {
   useEffect(() => {
     try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      const win = window as unknown as { adsbygoogle: Record<string, unknown>[] };
+      (win.adsbygoogle = win.adsbygoogle || []).push({});
     } catch (e) {
       console.error('AdSense error:', e);
     }
