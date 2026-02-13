@@ -134,7 +134,7 @@ function NasaImage() {
               allowFullScreen
             />
           ) : null}
-          <p>{apod.explanation}</p>
+          <p style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "left" }}>{apod.explanation}</p>
         </div>
   } else {
       return <div style={{ textAlign: "center", marginTop: "20px" }}></div>
@@ -168,10 +168,13 @@ export default function MyApp() {
       </div>
       <DayInfo season={season} day={day} />
       <AdUnit />
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <h2>Glass House Mountains, Queensland</h2>
+        <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
+          <Image src="/glasshouse_mountains/image.jpg" width="1000" height="500" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
+        </a>
+      </div>
       <NasaImage />
-      <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
-        <Image src="/glasshouse_mountains/image.jpg" width="1000" height="500" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
-      </a>
     </div>
   );
 }
