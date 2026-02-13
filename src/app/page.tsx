@@ -105,7 +105,7 @@ function NasaImage() {
   useEffect(() => {
     async function fetchData() {
       try {
-          const apiKey = 'DEMO_KEY'; // Replace with your NASA API key
+          const apiKey = 'bYmJ5UASrHSMzn1gyUplgrAqILhL6qQVPyy3FDfo';
           // TODO pass the date parameter so we get today's image in our local time
           const url = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
         const response = await fetch(url);
@@ -121,7 +121,6 @@ function NasaImage() {
   if (apod.media_type !== null){
       return <div style={{ textAlign: "center", marginTop: "20px" }}>
           <h2>{apod.title}</h2>
-          <p>{apod.explanation}</p>
           {apod.media_type === 'image' ? (
             <Image src={apod.url} alt={apod.title} width="1000" height="500" style={{ maxWidth: "100%", height: "auto" }} />
           ) : apod.media_type === 'video' ? (
@@ -135,6 +134,7 @@ function NasaImage() {
               allowFullScreen
             />
           ) : null}
+          <p>{apod.explanation}</p>
         </div>
   } else {
       return <div style={{ textAlign: "center", marginTop: "20px" }}></div>
