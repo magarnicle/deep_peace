@@ -121,6 +121,7 @@ function NasaImage() {
   if (apod.media_type !== null){
       return <div style={{ textAlign: "center", marginTop: "20px" }}>
           <h2>{apod.title}</h2>
+          <a href={apod.hdurl} target="_blank">
           {apod.media_type === 'image' ? (
             <Image src={apod.url} alt={apod.title} width="1000" height="500" style={{ maxWidth: "100%", height: "auto" }} />
           ) : apod.media_type === 'video' ? (
@@ -134,6 +135,7 @@ function NasaImage() {
               allowFullScreen
             />
           ) : null}
+          </a>
           <p style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "left" }}>{apod.explanation}</p>
         </div>
   } else {
