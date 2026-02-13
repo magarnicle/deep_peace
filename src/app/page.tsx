@@ -99,7 +99,7 @@ function AdUnit() {
 
 function NasaImage() {
 
-  const apod_default = {title: "", url: "", explanation: "", media_type: null}
+  const apod_default = {title: "", hdurl: "", url: "", explanation: "", media_type: null}
   const [apod, setApod] = useState(apod_default);
 
   useEffect(() => {
