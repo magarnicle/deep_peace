@@ -2,7 +2,8 @@
 
 import {get_season, get_day, Season, Day} from "./liturgical_dates";
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
 
 function DateTime() {
     // State to hold the current date and time
@@ -165,6 +166,8 @@ export default function MyApp() {
 
   return (
     <div>
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
        <h1>Alpha. Expect bugs and changes</h1>
       </div>
