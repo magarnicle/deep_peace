@@ -9,7 +9,7 @@ const About: React.FC = () => {
       <h1>About Us</h1>
       <p>Welcome to the About Page of our Next.js Application!</p>
       <p>Hereou can learn more about what we do.</p>
-          <Image src="/deep_peace_logo.jpg" width="1080" height="1080" alt="Deep Peace ripple logo" />
+          <Image src="/deep_peace_logo.png" width="500" height="500" alt="Deep Peace ripple logo" />
           </div>
             );
 };
