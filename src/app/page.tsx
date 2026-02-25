@@ -184,7 +184,7 @@ export default function MyApp() {
 
       Jacqueline Amanda Woodson
 
-      without anybody's help
+      without anybody&apos;s help
       on a clean white page in my composition notebook,
            I know
 
