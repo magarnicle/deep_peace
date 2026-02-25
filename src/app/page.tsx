@@ -2,7 +2,6 @@
 
 import {get_season, get_day, Season, Day} from "./liturgical_dates";
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 function DateTime() {
@@ -166,8 +165,6 @@ export default function MyApp() {
 
   return (
     <div>
-      <Link href="/">Home</Link>
-      <Link href="/about">About</Link>
       <div style={{ color: "red", width: "100%", height: "100%", alignContent: "center", textAlign: "center" }}>
        <h1>Alpha. Expect bugs and changes</h1>
       </div>
@@ -176,8 +173,35 @@ export default function MyApp() {
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <h2>Glass House Mountains, Queensland</h2>
         <a href="https://upload.wikimedia.org/wikipedia/commons/d/d7/Sunset_over_the_Glasshouse_Mountains.jpg" target="_blank">
-          <Image src="/glasshouse_mountains/image.jpg" width="1000" height="500" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
+          <Image src="/glasshouse_mountains/image.jpg" width="1000" height="562" alt="Sunset view of the Glasshouse Mountains, Sunshine Coast, Queensland. Source: Wikipedia" />
         </a>
+      </div>
+      <div>
+      on paper
+      by Jacqueline Woodson
+
+      The first time I write my full name
+
+      Jacqueline Amanda Woodson
+
+      without anybody's help
+      on a clean white page in my composition notebook,
+           I know
+
+           if I wanted to
+
+               I could write anything.
+
+                   Letters becoming words, words gathering meaning,
+                    becoming
+                    thoughts outside my head
+
+                    becoming sentences
+
+                    written by
+
+                                                                      Jacqueline Amanda Woodson
+
       </div>
       <NasaImage />
     </div>
