@@ -7,3 +7,7 @@ body {
 
 a {color: #00dddd}
 :visited {color: #00aaaa}
+
+article p {
+  text-align: justify;
+}

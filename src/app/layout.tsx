@@ -25,13 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-UK">
       <head>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9728124941305322"
           crossOrigin="anonymous"
           strategy="afterInteractive"
+        />
+        <Script
+          type="module"
+          blocking="render"
+          src="https://cdn.jsdelivr.net/npm/justif@0.5.1/dist/auto.js"
+          integrity="sha384-DnIhwLwkHYcy1EkiE+4CmcVwlrGwWNxXiqxBt8n0HgxG23S897N5gJrH1OdjdX3R"
+          crossOrigin="anonymous"
         />
       </head>
       <body

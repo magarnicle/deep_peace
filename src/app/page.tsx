@@ -136,7 +136,7 @@ function NasaImage() {
             />
           ) : null}
           </a>
-          <p style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "left" }}>{apod.explanation}</p>
+          <p style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "justify" }}>{apod.explanation}</p>
         </div>
   } else {
       return <div style={{ textAlign: "center", marginTop: "20px" }}></div>
