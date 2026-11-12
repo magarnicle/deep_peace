@@ -10,7 +10,7 @@ const TRPrivacy: React.FC = () => {
 
 <b>Last updated: November 12, 2026</b>
 
-This Privacy Policy explains how <b>Type Righter Keyboard</b>, developed by <b>Matthew James Rademaker</b> ("we", "us", or "our"), handles information when you use the app.
+This Privacy Policy explains how <b>Type Righter Keyboard</b>, developed by <b>Matthew James Rademaker</b> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), handles information when you use the app.
 
 Type Righter Keyboard is designed with privacy in mind. The keyboard does not send your typed content to us, and we do not collect or store your typed content, clipboard history, or personal dictionary data.
 
@@ -27,7 +27,7 @@ We do not collect or transmit:
 - Your personal dictionary or words you have typed
 - Your keyboard usage history
 
-The keyboard's predictive-text functionality operates on your device. We do not upload words you type or use your typing activity to build or update a dictionary or user profile.
+The keyboard&quot;s predictive-text functionality operates on your device. We do not upload words you type or use your typing activity to build or update a dictionary or user profile.
 
 <h2>2. Clipboard History</h2>
 
@@ -63,11 +63,11 @@ We do not use this information for profiling or for any purpose unrelated to the
 
 The free version of Type Righter Keyboard displays advertisements provided by <b>Google Ads</b>.
 
-Google and its advertising partners may collect or use certain information from your device for purposes such as delivering, measuring, and personalizing advertisements, subject to Google's applicable policies and your device or Google advertising settings.
+Google and its advertising partners may collect or use certain information from your device for purposes such as delivering, measuring, and personalizing advertisements, subject to Google&quot;s applicable policies and your device or Google advertising settings.
 
 <b>Type Righter Keyboard does not send your typed text, keystrokes, or clipboard contents to Google Ads.</b>
 
-Google's handling of information through its advertising services is governed by Google's own privacy policies. For more information, please see:
+Google&quot;s handling of information through its advertising services is governed by Google&quot;s own privacy policies. For more information, please see:
 
 https://policies.google.com/privacy
 
@@ -77,7 +77,7 @@ Type Righter Keyboard may offer subscriptions that provide benefits such as remo
 
 Subscription purchases and payments are processed through <b>Google Play</b>. We do not receive or store your payment card details or other payment credentials.
 
-Google may process information relating to your purchase or subscription in accordance with Google's Privacy Policy and Google Play's terms.
+Google may process information relating to your purchase or subscription in accordance with Google&quot;s Privacy Policy and Google Play&quot;s terms.
 
 <h2>8. Data Sharing</h2>
 
@@ -85,7 +85,7 @@ We do not sell, rent, or otherwise share your personal information.
 
 We do not have access to your typed text, keystrokes, clipboard history, or personal dictionary.
 
-The App uses third-party Google services, including Google Ads, Google Play, and Google Block Store, as described in this Privacy Policy. These services may process information in accordance with Google's own policies.
+The App uses third-party Google services, including Google Ads, Google Play, and Google Block Store, as described in this Privacy Policy. These services may process information in accordance with Google&quot;s own policies.
 
 <h2>9. Data Security</h2>
 
@@ -93,7 +93,7 @@ Your typed content and clipboard history are kept on your device rather than bei
 
 The security of information stored locally on your device depends on the security of your device and its operating system.
 
-<h2>10. Children's Privacy</h2>
+<h2>10. Children&quot;s Privacy</h2>
 
 Type Righter is not made for children under 13. The app does not mark its ads as made for children.
 
@@ -103,11 +103,11 @@ Type Righter Keyboard does not knowingly collect personal information from child
 
 We may update this Privacy Policy from time to time to reflect changes to the App or its services.
 
-If we make changes, we will update the "Last updated" date at the top of this Privacy Policy.
+If we make changes, we will update the &quot;Last updated&quot; date at the top of this Privacy Policy.
 
 <h2>11. Contact</h2>
 
-If you have questions about this Privacy Policy or Type Righter Keyboard's privacy practices, please contact:
+If you have questions about this Privacy Policy or Type Righter Keyboard&quot;s privacy practices, please contact:
 
 <b>Matthew James Rademaker</b>
 
